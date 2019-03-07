@@ -40,12 +40,10 @@
 
 <body>
 
- 
-
-  <!-- Employee Tracker -->
+   <!------------------ Train Tracker ------------------------------------>
   <div class="container">
 
-    <!-- Jumbotron -->
+    <!------------------ Jumbotron ---------------------------------------->
     <div class="jumbotron">
       <h1 class="text-center">Anytime is Train Time</h1>
       <h3 class="text-center"></h3>
@@ -55,7 +53,7 @@
 
       <div class="col-md-12">
 
-        <!-- Current Train Schedule-->
+    <!------------- Current Train Schedule ------------------------------>
         <div class="card mb-4">
           <div class="card-header">Current Train Schedule</div>
           <div class="card-body">
@@ -76,6 +74,51 @@
         </div>
       </div>
     </div>
+    <!----------------- Train Adding and Form Entry ---------------------->
+    <div class="row">
+            <div class="col-md-12">
+              <!-- Add Train  -->
+              <div class="card mb-4">
+                <div class="card-header">Add Train</div>
+                <div class="card-body">
+        
+                  <!-- Entry Form -->
+                  <form>
+                    <div class="form-group">
+                      <label for="train-name-input">Train Name</label>
+                      <input class="form-control" id="train-name-input" placeholder="Salt City Express" type="text">
+                    </div>
+                    <div class="form-group">
+                      <label for="destination-input">Destination</label>
+                      <input class="form-control" id="destination-input" placeholder="New York" type="text">
+                    </div>
+                    <div class="form-group">
+                      <label for="trainTime-input">First Train Time (HH:mm - military time)</label>
+                      <input class="form-control" id="trainTime-input" placeholder="00:00" type="text">
+                    </div>
+                    <div class="form-group">
+                      <label for="frequency-input">Frequency (min)</label>
+                      <input class="form-control" id="frequency-input" placeholder="0" type="text">
+                    </div>
+                    <button class="btn btn-primary float-left" id="add-train-btn">Submit</button>
+                  </form>
+        
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        </div>
+        
+        
+
+
+
+
+
+
+
+
 
    
 
