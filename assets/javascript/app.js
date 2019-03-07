@@ -18,7 +18,7 @@
       // Initial Values
       var trainName = "";
       var destination = "";
-     // var trainTiming = 0;
+      var trainTiming = 0;
       var frequency = 0;
       var trainCurrentTime =0;
      
@@ -30,8 +30,12 @@
         // Grabbed values from text-boxes
         trainName = $("#train-name-input").val().trim();
         destination = $("#destination-input").val().trim();
-       trainCurrentTime = $("#trainTime-input").val().trim();
+       trainTiming = $("#trainTime-input").val().trim();
         frequency = $("#frequency-input").val().trim();
+
+        //Convert input time 
+        
+        trainCurrentTime = moment(trainTiming+",", 'HH:mm').format('hh:mm a');
         
         // Code for "pushing values in the database"
         database.ref().push({
@@ -61,13 +65,11 @@
         $("#traintiming-display").text(childSnapshot.val().trainCurrentTime);
         $("#frequency-display").text(childSnapshot.val().frequency);
 
+        //----------------Table Row adding----------------
 
-
+        $('#train-table tbody').append("<tr><td scope='col'>"+childSnapshot.val().trainName+"</td><td scope='col'>"+childSnapshot.val().destination+"</td><td scope='col'>"+childSnapshot.val().frequency+"</td><td scope='col'>"+childSnapshot.val().trainCurrentTime+"</td><td scope='col'>Minutes Away</td></tr>");
+       
         
-                
-        
-
-  
         // Handle the errors
         },function(errorObject) {
         console.log("Errors handled: " + errorObject.code);
