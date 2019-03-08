@@ -15,10 +15,10 @@
 ## Train Schedular Image View
 
 *   Desktop view
-![alt text]( "Train Schedular-1 ")
+![alt text](https://github.com/atiftariq786/Firebase-Train-Scheduler/blob/master/assets/images/Firebase-Train%20Schedule.jpg?raw=true "Train Schedular-1 ")
 
 *   Trains Added in schedular (Mobile view)
-![alt text]( "Train Schedular-2 Responsive")
+![alt text](https://github.com/atiftariq786/Firebase-Train-Scheduler/blob/master/assets/images/Train_Time_Image-2.png?raw=true "Train Schedular-2 Responsive")
 
 
 ## Train Schedular Descriptions
