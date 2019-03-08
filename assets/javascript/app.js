@@ -20,8 +20,8 @@
       var destination = "";
       var trainTiming = 0;
       var frequency = 0;
-      var trainCurrentTime =0;
-     
+      var trainCurrentTime =0;  
+   
        
       // Capture Button Click
       $("#add-train-btn").on("click", function(event) {
@@ -33,15 +33,13 @@
        trainTiming = $("#trainTime-input").val().trim();
         frequency = $("#frequency-input").val().trim();
 
-        //Convert input time 
         
-        trainCurrentTime = moment(trainTiming+",", 'HH:mm').format('hh:mm a');
         
         // Code for "pushing values in the database"
         database.ref().push({
             trainName: trainName,
             destination: destination,
-            trainCurrentTime:trainCurrentTime,
+           trainTiming:trainTiming,
             frequency : frequency,
             dateAdded: firebase.database.ServerValue.TIMESTAMP
         });
@@ -55,19 +53,38 @@
         //console.log(snapshot.val());
         console.log(childSnapshot.val(). trainName);
         console.log(childSnapshot.val().destination);
-        console.log(childSnapshot.val().trainCurrentTime);
+        console.log(childSnapshot.val().trainTiming);
         console.log(childSnapshot.val().frequency);
-        console.log(childSnapshot.val().joinDate);
+      
 
         // Change the HTML to reflect
         $("trainName-display").text(childSnapshot.val().trainName);
         $("#destination-display").text(childSnapshot.val().destination);
-        $("#traintiming-display").text(childSnapshot.val().trainCurrentTime);
+        $("#traintiming-display").text(childSnapshot.val().trainTiming);
         $("#frequency-display").text(childSnapshot.val().frequency);
+     
 
+        //Convert input time 
+        var currentTime = moment();
+        var awayMinutes = 0;
+        var trainTimeConvert = moment(childSnapshot.val().trainTiming, 'HH:mm');
+            if(trainTimeConvert < currentTime) {
+              var timeWithFeq = moment(childSnapshot.val().trainTiming, 'HH:mm').add(childSnapshot.val().frequency, "minutes").format("HH:mm");
+              awayMinutes = moment(timeWithFeq,"HH:mm").diff(moment(), 'minutes'); 
+
+            }
+            else{
+              awayMinutes = trainTimeConvert.diff(moment(), 'minutes'); 
+
+            }
+        
+
+            trainTimeConvert = moment(childSnapshot.val().trainTiming, 'HH:mm').format('h:mm a');
         //----------------Table Row adding----------------
 
-        $('#train-table tbody').append("<tr><td scope='col'>"+childSnapshot.val().trainName+"</td><td scope='col'>"+childSnapshot.val().destination+"</td><td scope='col'>"+childSnapshot.val().frequency+"</td><td scope='col'>"+childSnapshot.val().trainCurrentTime+"</td><td scope='col'>Minutes Away</td></tr>");
+        $('#train-table tbody').append("<tr><td scope='col'>"+childSnapshot.val().trainName+"</td><td scope='col'>"+childSnapshot.val().destination+"</td><td scope='col'>"+childSnapshot.val().frequency+"</td><td scope='col'>"+trainTimeConvert+"</td><td scope='col'>"+awayMinutes+"</td></tr>");
+
+
        
         
         // Handle the errors
